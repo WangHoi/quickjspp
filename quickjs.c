@@ -32,7 +32,9 @@
 #include <fenv.h>
 #include <math.h>
 #if defined(_WIN32)
+#if defined(__MINGW32__)
 #include <timezoneapi.h>
+#endif
 #elif defined(__APPLE__)
 #include <malloc/malloc.h>
 #include <sys/time.h>
