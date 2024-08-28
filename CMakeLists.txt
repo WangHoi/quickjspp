@@ -3,7 +3,7 @@ target_compile_definitions(quickjs PUBLIC
   JS_STRICT_NAN_BOXING # this option enables x64 build on Windows/MSVC
   CONFIG_JSX)
 
-file(READ "VERSION" VERSION)
+file(READ "VERSION.txt" VERSION)
 file(CONFIGURE OUTPUT "quickjs-version.h" CONTENT "#define QUICKJS_VERSION \"${VERSION}\"")
 target_sources(quickjs PRIVATE
 "cutils.h"
