@@ -30,6 +30,9 @@
 #include <assert.h>
 #include <time.h>
 #include <fenv.h>
+#if defined(_WIN32)
+#define _UCRT_NOISY_NAN
+#endif
 #include <math.h>
 #if defined(_WIN32)
 #if defined(__MINGW32__)
