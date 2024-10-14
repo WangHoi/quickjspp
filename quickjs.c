@@ -42386,6 +42386,17 @@ static JSValue js_math_random(JSContext *ctx, JSValueConst this_val,
 static double js_math_floor(double x) { return floor(x); }
 static double js_math_ceil(double x) { return ceil(x); }
 
+/* Prevent the compiler from generating calls to intrinsic functions:
+ * See: https://learn.microsoft.com/en-us/cpp/preprocessor/intrinsic?view=msvc-170 */
+#ifdef _MSC_VER
+#pragma function(acos,cosh,pow,tanh)
+#pragma function(asin,fmod,sinh)
+#pragma function(atan,exp,log10,sqrt)
+#pragma function(atan2,log,sin,tan)
+#pragma function(cos)
+#pragma function(log2) /* log2 not mentioned in above doc */
+#endif
+
 static const JSCFunctionListEntry js_math_funcs[] = {
     JS_CFUNC_MAGIC_DEF("min", 2, js_math_min_max, 0 ),
     JS_CFUNC_MAGIC_DEF("max", 2, js_math_min_max, 1 ),
